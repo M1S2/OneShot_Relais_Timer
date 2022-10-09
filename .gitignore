@@ -1,3 +1,7 @@
+# Code files
+Debug/
+.vs/
+
 # Slicer files
 *.gcode
 
