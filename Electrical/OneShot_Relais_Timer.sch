@@ -1955,6 +1955,27 @@ Source: http://eshop.phoenixcontact.com .. 1729131.pdf</description>
 <rectangle x1="-3.175" y1="-3.81" x2="-1.27" y2="3.81" layer="21"/>
 <rectangle x1="1.27" y1="-2.54" x2="3.175" y2="2.54" layer="21"/>
 </package>
+<package name="CSV-G" urn="urn:adsk.eagle:footprint:37698284/1" library_version="24">
+<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic G&lt;p&gt; 
+10 mm dia</description>
+<wire x1="5.08" y1="5.2387" x2="5.08" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="5.08" y1="-1.27" x2="5.08" y2="-5.2388" width="0.2032" layer="21"/>
+<wire x1="5.08" y1="-5.2388" x2="-3.0162" y2="-5.2387" width="0.2032" layer="21"/>
+<wire x1="-3.0162" y1="-5.2387" x2="-5.2387" y2="-3.0162" width="0.2032" layer="21"/>
+<wire x1="-5.2387" y1="-3.0162" x2="-5.2388" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="5.08" y1="5.2387" x2="-3.3338" y2="5.2387" width="0.2032" layer="21"/>
+<wire x1="-3.3338" y1="5.2387" x2="-5.2388" y2="3.3337" width="0.2032" layer="21"/>
+<wire x1="-5.2388" y1="3.3337" x2="-5.2388" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="2.6976" y1="4.1587" x2="2.6976" y2="-4.1588" width="0.1016" layer="51"/>
+<circle x="0" y="0" radius="5" width="0.1016" layer="51"/>
+<smd name="+" x="-4.826" y="0" dx="4.318" dy="1.9304" layer="1"/>
+<smd name="-" x="4.826" y="0" dx="4.318" dy="1.9304" layer="1"/>
+<text x="5.842" y="2.54" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="5.842" y="-3.556" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-6.032" y1="-0.4763" x2="-4.9207" y2="0.4763" layer="51"/>
+<rectangle x1="4.9213" y1="-0.4763" x2="6.0326" y2="0.4763" layer="51"/>
+<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="R0402" urn="urn:adsk.eagle:package:23547/3" type="model" library_version="14">
@@ -2595,6 +2616,13 @@ Source: http://eshop.phoenixcontact.com .. 1729131.pdf</description>
 <packageinstance name="EI30-1"/>
 </packageinstances>
 </package3d>
+<package3d name="CSV-G" urn="urn:adsk.eagle:package:37698300/2" type="model" library_version="24">
+<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic G&lt;p&gt; 
+10 mm dia</description>
+<packageinstances>
+<packageinstance name="CSV-G"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
 <symbol name="R-EU" urn="urn:adsk.eagle:symbol:21817508/1" library_version="14">
@@ -2684,6 +2712,20 @@ Source: http://eshop.phoenixcontact.com .. 1729131.pdf</description>
 <pin name="P2" x="-5.08" y="-7.62" visible="pad" length="middle" direction="pas" swaplevel="1"/>
 <pin name="S3" x="7.62" y="-5.08" visible="pad" length="middle" direction="pas" swaplevel="2" rot="R180"/>
 <pin name="S4" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="2" rot="R180"/>
+</symbol>
+<symbol name="CP-" urn="urn:adsk.eagle:symbol:37698278/1" library_version="24">
+<wire x1="0.635" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="0.635" y1="1.5875" x2="0.635" y2="0" width="0.508" layer="94"/>
+<wire x1="0.635" y1="0" x2="0.635" y2="-1.5875" width="0.508" layer="94"/>
+<wire x1="-0.381" y1="0" x2="-0.3811" y2="0" width="0.1524" layer="94"/>
+<wire x1="-0.3811" y1="0" x2="-2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="-0.365" y1="0" x2="-0.9017" y2="-1.5367" width="0.4064" layer="94" curve="-37.878659" cap="flat"/>
+<wire x1="-0.8979" y1="1.5144" x2="-0.3811" y2="0" width="0.4064" layer="94" curve="-37.377473" cap="flat"/>
+<text x="3.175" y="0.635" size="1.778" layer="95">&gt;NAME</text>
+<text x="-5.08" y="-3.81" size="1.778" layer="96">&gt;VALUE</text>
+<text x="1.27" y="0.635" size="1.4224" layer="94" ratio="12">+</text>
+<pin name="-" x="-2.54" y="0" visible="off" length="point" direction="pas"/>
+<pin name="+" x="2.54" y="0" visible="off" length="point" direction="pas" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -4197,6 +4239,25 @@ ERA</description>
 <technology name="">
 <attribute name="POPULARITY" value="4" constant="no"/>
 </technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="CP_" urn="urn:adsk.eagle:component:37782215/2" library_version="24">
+<gates>
+<gate name="G$1" symbol="CP-" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CSV-G">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:37698300/2"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
 </technologies>
 </device>
 </devices>
@@ -7382,555 +7443,6 @@ Source: http://focus.ti.com/lit/ds/symlink/ua78l05.pdf</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="rc-master-smd">
-<description>&lt;b&gt;R/C MASTER-SMD! - v1.01 (07/03/2007)&lt;/b&gt;&lt;p&gt;
-&lt;p&gt;This library is a collection of SMD ONLY resistors and capacitors by various manufacturers. The pad sizes, spacing and silkscreen widths have been tweaked for use in dense fine pitch layouts where space, alignment and precision are critical. In general these components are designed for routing in grid increments of 5 mils&lt;/p&gt;
-&lt;p&gt;* Silkscreen line elements are a minimum of 8 mils in width. All components have text sizes of 0.032"  or 0.04".&lt;/p&gt;
-&lt;p&gt;* A silkscreen text values use a ratio of 18 in all cases.&lt;/p&gt;
-&lt;p&gt;* ALL PADS AND PART OUTLINES ARE SNAPPED TO A 5 MIL GRID!&lt;/p&gt;
-&lt;p&gt;&lt;h4&gt;All components are prefixed using the following conventions:&lt;/h4&gt;&lt;/p&gt;
-&lt;table width="380" border="1" bordercolor="#000000"&gt;
-  &lt;tr&gt; 
-    &lt;td width="81" bgcolor="#33CCFF"&gt;&lt;div align="center"&gt;&lt;strong&gt;Prefix&lt;/strong&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td width="289" bgcolor="#33CCFF"&gt;&lt;div align="center"&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;CBP_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Bipolar Electrolytic Types&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;CCA_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Chip Cap Array Types&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;CP_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Polarized Electrolytic/Tantalum Types&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;C_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Non-Polarized Film / Chip Types&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;FB_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Simple Ferrite Bead Types&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;L_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Simple Chip Inductors&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt; 
-    &lt;td&gt;&lt;div align="center"&gt;R_&lt;/div&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;div align="center"&gt;Resistor Types&lt;/div&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;author&gt;THIS LIBRARY IS PROVIDED AS IS AND WITHOUT WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED.&lt;br&gt;Copyright (C) 2007, Bob Starr&lt;br&gt; http://www.bobstarr.net&lt;br&gt;
-&lt;/author&gt;</description>
-<packages>
-<package name="CSV-A">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic A&lt;p&gt; 
-3 mm dia</description>
-<wire x1="1.8337" y1="1.675" x2="1.8337" y2="0.7025" width="0.2032" layer="21"/>
-<wire x1="1.8337" y1="-0.7025" x2="1.8337" y2="-1.675" width="0.2032" layer="21"/>
-<wire x1="1.8337" y1="-1.675" x2="-1.3137" y2="-1.675" width="0.2032" layer="21"/>
-<wire x1="-1.3137" y1="-1.675" x2="-1.8337" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="-1.8337" y1="-1.155" x2="-1.8337" y2="-0.7025" width="0.2032" layer="21"/>
-<wire x1="1.8337" y1="1.675" x2="-1.3137" y2="1.675" width="0.2032" layer="21"/>
-<wire x1="-1.3137" y1="1.675" x2="-1.8337" y2="1.155" width="0.2032" layer="21"/>
-<wire x1="-1.8337" y1="1.155" x2="-1.8337" y2="0.7025" width="0.2032" layer="21"/>
-<wire x1="0.905" y1="1.2" x2="0.905" y2="-1.2" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="1.5811" width="0.1016" layer="51"/>
-<smd name="+" x="-1.524" y="0" dx="1.6764" dy="0.8128" layer="1"/>
-<smd name="-" x="1.524" y="0" dx="1.6764" dy="0.8128" layer="1"/>
-<text x="2.286" y="0.762" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="2.286" y="-1.524" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-2.0632" y1="-0.1588" x2="-1.5869" y2="0.1588" layer="51"/>
-<rectangle x1="1.524" y1="-0.1588" x2="2.0003" y2="0.1588" layer="51"/>
-<rectangle x1="-0.3175" y1="-0.635" x2="0.3175" y2="0.635" layer="35"/>
-</package>
-<package name="CSV-B">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic B&lt;p&gt; 
-4 mm dia</description>
-<wire x1="2.2862" y1="2.2862" x2="2.2862" y2="0.7938" width="0.2032" layer="21"/>
-<wire x1="2.2862" y1="-0.7938" x2="2.2862" y2="-2.2863" width="0.2032" layer="21"/>
-<wire x1="2.2862" y1="-2.2863" x2="-1.54" y2="-2.2863" width="0.2032" layer="21"/>
-<wire x1="-1.54" y1="-2.2863" x2="-2.2863" y2="-1.5401" width="0.2032" layer="21"/>
-<wire x1="-2.2863" y1="-1.5401" x2="-2.2863" y2="-0.7938" width="0.2032" layer="21"/>
-<wire x1="2.2862" y1="2.2862" x2="-1.54" y2="2.2863" width="0.2032" layer="21"/>
-<wire x1="-1.54" y1="2.2863" x2="-2.2863" y2="1.5401" width="0.2032" layer="21"/>
-<wire x1="-2.2863" y1="1.5401" x2="-2.2862" y2="0.7938" width="0.2032" layer="21"/>
-<wire x1="1.24" y1="1.7" x2="1.24" y2="-1.7" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="2.1298" width="0.1016" layer="51"/>
-<smd name="+" x="-2.032" y="0" dx="2.1844" dy="1.0668" layer="1"/>
-<smd name="-" x="2.032" y="0" dx="2.1844" dy="1.0668" layer="1"/>
-<text x="2.794" y="1.016" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="2.794" y="-1.778" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-2.6988" y1="-0.3175" x2="-2.0638" y2="0.3175" layer="51"/>
-<rectangle x1="2.0638" y1="-0.3175" x2="2.6988" y2="0.3175" layer="51"/>
-<rectangle x1="-0.3175" y1="-0.635" x2="0.3175" y2="0.635" layer="35"/>
-</package>
-<package name="CSV-C">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic C&lt;p&gt; 
-5 mm dia</description>
-<wire x1="2.6988" y1="2.6988" x2="2.6988" y2="0.9525" width="0.2032" layer="21"/>
-<wire x1="2.6987" y1="-0.9525" x2="2.6987" y2="-2.6988" width="0.2032" layer="21"/>
-<wire x1="2.6987" y1="-2.6988" x2="-1.7463" y2="-2.6988" width="0.2032" layer="21"/>
-<wire x1="-1.7463" y1="-2.6988" x2="-2.6988" y2="-1.7463" width="0.2032" layer="21"/>
-<wire x1="-2.6988" y1="-1.7463" x2="-2.6988" y2="-0.9525" width="0.2032" layer="21"/>
-<wire x1="2.6988" y1="2.6988" x2="-1.7463" y2="2.6988" width="0.2032" layer="21"/>
-<wire x1="-1.7463" y1="2.6988" x2="-2.6988" y2="1.7462" width="0.2032" layer="21"/>
-<wire x1="-2.6988" y1="1.7462" x2="-2.6988" y2="0.9525" width="0.2032" layer="21"/>
-<wire x1="1.5337" y1="1.9587" x2="1.5337" y2="-1.9588" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="2.5597" width="0.1016" layer="51"/>
-<smd name="+" x="-2.54" y="0" dx="2.54" dy="1.27" layer="1"/>
-<smd name="-" x="2.54" y="0" dx="2.54" dy="1.27" layer="1"/>
-<text x="3.302" y="1.27" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="3.302" y="-2.032" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-3.175" y1="-0.3175" x2="-2.54" y2="0.3175" layer="51"/>
-<rectangle x1="2.54" y1="-0.3175" x2="3.175" y2="0.3175" layer="51"/>
-<rectangle x1="-0.508" y1="-0.508" x2="0.508" y2="0.508" layer="35"/>
-</package>
-<package name="CSV-D">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic D&lt;p&gt; 
-6.3 mm dia</description>
-<wire x1="3.3337" y1="3.3338" x2="3.3337" y2="0.9525" width="0.2032" layer="21"/>
-<wire x1="3.3338" y1="-0.9525" x2="3.3338" y2="-3.3338" width="0.2032" layer="21"/>
-<wire x1="3.3338" y1="-3.3338" x2="-2.0637" y2="-3.3337" width="0.2032" layer="21"/>
-<wire x1="-2.0637" y1="-3.3337" x2="-3.3338" y2="-2.0637" width="0.2032" layer="21"/>
-<wire x1="-3.3338" y1="-2.0637" x2="-3.3338" y2="-0.9525" width="0.2032" layer="21"/>
-<wire x1="3.3337" y1="3.3338" x2="-2.0637" y2="3.3338" width="0.2032" layer="21"/>
-<wire x1="-2.0637" y1="3.3338" x2="-3.3338" y2="2.0638" width="0.2032" layer="21"/>
-<wire x1="-3.3338" y1="2.0638" x2="-3.3338" y2="0.9525" width="0.2032" layer="21"/>
-<wire x1="1.9687" y1="2.4" x2="1.9687" y2="-2.4" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="3.127" width="0.1016" layer="51"/>
-<smd name="+" x="-2.794" y="0" dx="3.302" dy="1.27" layer="1"/>
-<smd name="-" x="2.794" y="0" dx="3.302" dy="1.27" layer="1"/>
-<text x="3.81" y="1.524" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="3.81" y="-2.286" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="3.175" y1="-0.3175" x2="3.81" y2="0.3175" layer="51"/>
-<rectangle x1="-3.81" y1="-0.3175" x2="-3.175" y2="0.3175" layer="51"/>
-<rectangle x1="-0.508" y1="-0.508" x2="0.508" y2="0.508" layer="35"/>
-</package>
-<package name="CSV-E/F">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic E/F&lt;p&gt; 
-8 mm dia</description>
-<wire x1="4.1275" y1="4.1275" x2="4.1275" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="4.1275" y1="-1.27" x2="4.1275" y2="-4.1275" width="0.2032" layer="21"/>
-<wire x1="4.1275" y1="-4.1275" x2="-2.54" y2="-4.1275" width="0.2032" layer="21"/>
-<wire x1="-2.54" y1="-4.1275" x2="-4.1275" y2="-2.54" width="0.2032" layer="21"/>
-<wire x1="-4.1275" y1="-2.54" x2="-4.1275" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="4.1275" y1="4.1275" x2="-2.54" y2="4.1275" width="0.2032" layer="21"/>
-<wire x1="-2.54" y1="4.1275" x2="-4.1275" y2="2.54" width="0.2032" layer="21"/>
-<wire x1="-4.1275" y1="2.54" x2="-4.1275" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="2.48" y1="3" x2="2.48" y2="-3" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="3.9782" width="0.1016" layer="51"/>
-<smd name="+" x="-3.81" y="0" dx="4.318" dy="1.9304" layer="1"/>
-<smd name="-" x="3.81" y="0" dx="4.318" dy="1.9304" layer="1"/>
-<text x="4.572" y="2.286" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="4.572" y="-2.794" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="3.9688" y1="-0.4763" x2="4.9213" y2="0.4763" layer="51"/>
-<rectangle x1="-5.08" y1="-0.4763" x2="-3.9688" y2="0.4763" layer="51"/>
-<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
-</package>
-<package name="CSV-G">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic G&lt;p&gt; 
-10 mm dia</description>
-<wire x1="5.08" y1="5.2387" x2="5.08" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-1.27" x2="5.08" y2="-5.2388" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-5.2388" x2="-3.0162" y2="-5.2387" width="0.2032" layer="21"/>
-<wire x1="-3.0162" y1="-5.2387" x2="-5.2387" y2="-3.0162" width="0.2032" layer="21"/>
-<wire x1="-5.2387" y1="-3.0162" x2="-5.2388" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="5.2387" x2="-3.3338" y2="5.2387" width="0.2032" layer="21"/>
-<wire x1="-3.3338" y1="5.2387" x2="-5.2388" y2="3.3337" width="0.2032" layer="21"/>
-<wire x1="-5.2388" y1="3.3337" x2="-5.2388" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="2.6976" y1="4.1587" x2="2.6976" y2="-4.1588" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="5" width="0.1016" layer="51"/>
-<smd name="+" x="-4.826" y="0" dx="4.318" dy="1.9304" layer="1"/>
-<smd name="-" x="4.826" y="0" dx="4.318" dy="1.9304" layer="1"/>
-<text x="5.842" y="2.54" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="5.842" y="-3.556" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-6.032" y1="-0.4763" x2="-4.9207" y2="0.4763" layer="51"/>
-<rectangle x1="4.9213" y1="-0.4763" x2="6.0326" y2="0.4763" layer="51"/>
-<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
-</package>
-<package name="C3216/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt;&lt;p&gt;
-chip tantalum</description>
-<wire x1="-2.743" y1="1.1417" x2="2.743" y2="1.1417" width="0.0508" layer="39"/>
-<wire x1="2.743" y1="1.1417" x2="2.743" y2="-1.1418" width="0.0508" layer="39"/>
-<wire x1="2.743" y1="-1.1418" x2="-2.743" y2="-1.1418" width="0.0508" layer="39"/>
-<wire x1="-2.743" y1="-1.1418" x2="-2.743" y2="1.1417" width="0.0508" layer="39"/>
-<wire x1="2.794" y1="0.889" x2="0.381" y2="0.889" width="0.2032" layer="21"/>
-<wire x1="0.381" y1="0.889" x2="-2.413" y2="0.889" width="0.2032" layer="21"/>
-<wire x1="-2.413" y1="0.889" x2="-2.413" y2="-0.889" width="0.2032" layer="21"/>
-<wire x1="-2.413" y1="-0.889" x2="0.381" y2="-0.889" width="0.2032" layer="21"/>
-<wire x1="0.381" y1="-0.889" x2="2.794" y2="-0.889" width="0.2032" layer="21"/>
-<wire x1="2.794" y1="0.889" x2="2.794" y2="-0.889" width="0.2032" layer="21"/>
-<wire x1="0.381" y1="0.889" x2="0.381" y2="-0.889" width="0.2032" layer="21"/>
-<smd name="+" x="1.397" y="0" dx="1.5" dy="1.27" layer="1"/>
-<smd name="-" x="-1.397" y="0" dx="1.5" dy="1.27" layer="1"/>
-<text x="-2.286" y="1.27" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-2.286" y="-1.778" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.1999" y1="-0.5999" x2="0.1999" y2="0.5999" layer="35"/>
-<rectangle x1="2.35" y1="-0.95" x2="2.8" y2="0.95" layer="21"/>
-</package>
-<package name="C3216-18/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt; - KEMET A / EIA 3216-18 Reflow solder&lt;p&gt;
-KEMET S / EIA 3216-12</description>
-<wire x1="-2.743" y1="0.8242" x2="2.743" y2="0.8242" width="0.0508" layer="39"/>
-<wire x1="2.743" y1="0.8242" x2="2.743" y2="-0.8243" width="0.0508" layer="39"/>
-<wire x1="2.743" y1="-0.8243" x2="-2.743" y2="-0.8243" width="0.0508" layer="39"/>
-<wire x1="-2.743" y1="-0.8243" x2="-2.743" y2="0.8242" width="0.0508" layer="39"/>
-<wire x1="1.651" y1="-0.559" x2="1.651" y2="0.559" width="0.2032" layer="51"/>
-<wire x1="-1.651" y1="-0.559" x2="-1.651" y2="0.559" width="0.2032" layer="51"/>
-<wire x1="1.524" y1="-1.016" x2="1.524" y2="1.016" width="0.2032" layer="51"/>
-<wire x1="1.524" y1="1.016" x2="-1.524" y2="1.016" width="0.2032" layer="21"/>
-<wire x1="-1.524" y1="1.016" x2="-1.524" y2="-1.016" width="0.2032" layer="51"/>
-<wire x1="-1.524" y1="-1.016" x2="1.524" y2="-1.016" width="0.2032" layer="21"/>
-<smd name="+" x="1.651" y="0" dx="1.95" dy="1.5" layer="1"/>
-<smd name="-" x="-1.651" y="0" dx="1.95" dy="1.5" layer="1"/>
-<text x="-1.524" y="1.27" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-1.524" y="-1.778" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.1588" y1="-0.4763" x2="0.1588" y2="0.4763" layer="35"/>
-<rectangle x1="0.2" y1="-1" x2="0.5" y2="1" layer="21"/>
-</package>
-<package name="C3528/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt;&lt;p&gt;
-chip tantalum</description>
-<wire x1="-2.743" y1="1.3005" x2="2.743" y2="1.3005" width="0.0508" layer="39"/>
-<wire x1="2.743" y1="1.3005" x2="2.743" y2="-1.3005" width="0.0508" layer="39"/>
-<wire x1="2.743" y1="-1.3005" x2="-2.743" y2="-1.3005" width="0.0508" layer="39"/>
-<wire x1="-2.743" y1="-1.3005" x2="-2.743" y2="1.3005" width="0.0508" layer="39"/>
-<wire x1="3.429" y1="1.524" x2="0.254" y2="1.524" width="0.2032" layer="21"/>
-<wire x1="0.254" y1="1.524" x2="-2.921" y2="1.524" width="0.2032" layer="21"/>
-<wire x1="-2.921" y1="1.524" x2="-2.921" y2="-1.524" width="0.2032" layer="21"/>
-<wire x1="-2.921" y1="-1.524" x2="0.254" y2="-1.524" width="0.2032" layer="21"/>
-<wire x1="0.254" y1="-1.524" x2="3.429" y2="-1.524" width="0.2032" layer="21"/>
-<wire x1="3.429" y1="-1.524" x2="3.429" y2="1.524" width="0.2032" layer="21"/>
-<wire x1="0.254" y1="-1.524" x2="0.254" y2="1.524" width="0.2032" layer="21"/>
-<smd name="+" x="1.651" y="0" dx="2" dy="2.2" layer="1"/>
-<smd name="-" x="-1.651" y="0" dx="2" dy="2.2" layer="1"/>
-<text x="-2.794" y="1.778" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-2.794" y="-2.286" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.3" y1="-1" x2="0.3" y2="1" layer="35"/>
-<rectangle x1="2.9369" y1="-1.524" x2="3.429" y2="1.524" layer="21"/>
-</package>
-<package name="C3528-21/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt; - KEMET B / EIA 3528-21 Reflow solder&lt;p&gt;
-KEMET T / EIA 3528-12</description>
-<wire x1="-1.651" y1="1.397" x2="1.651" y2="1.397" width="0.2032" layer="21"/>
-<wire x1="1.651" y1="1.397" x2="1.651" y2="-1.397" width="0.2032" layer="51"/>
-<wire x1="1.651" y1="-1.397" x2="-1.651" y2="-1.397" width="0.2032" layer="21"/>
-<wire x1="-1.651" y1="-1.397" x2="-1.651" y2="1.397" width="0.2032" layer="51"/>
-<wire x1="-2.5842" y1="1.4593" x2="2.5843" y2="1.4593" width="0.0508" layer="39"/>
-<wire x1="2.5843" y1="1.4593" x2="2.5843" y2="-1.4593" width="0.0508" layer="39"/>
-<wire x1="2.5843" y1="-1.4593" x2="-2.5842" y2="-1.4593" width="0.0508" layer="39"/>
-<wire x1="-2.5842" y1="-1.4593" x2="-2.5842" y2="1.4593" width="0.0508" layer="39"/>
-<smd name="+" x="1.524" y="0" dx="1.778" dy="2.286" layer="1"/>
-<smd name="-" x="-1.524" y="0" dx="1.778" dy="2.286" layer="1"/>
-<text x="-1.778" y="1.778" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-1.778" y="-2.286" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.3175" y1="-0.635" x2="0.3175" y2="0.635" layer="35"/>
-<rectangle x1="-1.877" y1="-0.6" x2="-1.752" y2="0.6" layer="51"/>
-<rectangle x1="1.752" y1="-0.6" x2="1.877" y2="0.6" layer="51"/>
-<rectangle x1="0.1" y1="-1.397" x2="0.4763" y2="1.397" layer="21"/>
-</package>
-<package name="C6032/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt;&lt;p&gt;
-chip tantalum</description>
-<wire x1="-4.013" y1="1.618" x2="4.013" y2="1.618" width="0.0508" layer="39"/>
-<wire x1="4.013" y1="1.618" x2="4.013" y2="-1.618" width="0.0508" layer="39"/>
-<wire x1="4.013" y1="-1.618" x2="-4.013" y2="-1.618" width="0.0508" layer="39"/>
-<wire x1="-4.013" y1="-1.618" x2="-4.013" y2="1.618" width="0.0508" layer="39"/>
-<wire x1="4.826" y1="1.651" x2="0.889" y2="1.651" width="0.2032" layer="21"/>
-<wire x1="0.889" y1="1.651" x2="-4.191" y2="1.651" width="0.2032" layer="21"/>
-<wire x1="-4.191" y1="1.651" x2="-4.191" y2="-1.778" width="0.2032" layer="21"/>
-<wire x1="-4.191" y1="-1.778" x2="0.889" y2="-1.778" width="0.2032" layer="21"/>
-<wire x1="0.889" y1="-1.778" x2="4.826" y2="-1.778" width="0.2032" layer="21"/>
-<wire x1="4.826" y1="-1.778" x2="4.826" y2="1.651" width="0.2032" layer="21"/>
-<wire x1="0.889" y1="-1.778" x2="0.889" y2="1.651" width="0.2032" layer="21"/>
-<smd name="+" x="2.54" y="0" dx="2.6" dy="2.2" layer="1"/>
-<smd name="-" x="-2.54" y="0" dx="2.6" dy="2.2" layer="1"/>
-<text x="-4.064" y="2.032" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-4.064" y="-2.54" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.5001" y1="-1" x2="0.5001" y2="1" layer="35"/>
-<rectangle x1="4.064" y1="-1.778" x2="4.826" y2="1.651" layer="21"/>
-</package>
-<package name="C6032-28/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt; - KEMET C / EIA 6032-28 Reflow solder&lt;p&gt;
-KEMET U / EIA 6032-15</description>
-<wire x1="-2.921" y1="1.524" x2="2.794" y2="1.524" width="0.2032" layer="21"/>
-<wire x1="2.794" y1="1.524" x2="2.794" y2="-1.524" width="0.2032" layer="51"/>
-<wire x1="2.794" y1="-1.524" x2="-2.921" y2="-1.524" width="0.2032" layer="21"/>
-<wire x1="-2.921" y1="-1.524" x2="-2.921" y2="1.524" width="0.2032" layer="51"/>
-<wire x1="-4.013" y1="1.4592" x2="4.0131" y2="1.4592" width="0.0508" layer="39"/>
-<wire x1="4.0131" y1="1.4592" x2="4.0131" y2="-1.4593" width="0.0508" layer="39"/>
-<wire x1="4.0131" y1="-1.4593" x2="-4.013" y2="-1.4593" width="0.0508" layer="39"/>
-<wire x1="-4.013" y1="-1.4593" x2="-4.013" y2="1.4592" width="0.0508" layer="39"/>
-<smd name="+" x="2.54" y="0" dx="2.55" dy="2.5" layer="1"/>
-<smd name="-" x="-2.54" y="0" dx="2.55" dy="2.5" layer="1"/>
-<text x="-2.794" y="1.778" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-2.794" y="-2.286" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-3.1" y1="-1.0995" x2="-2.95" y2="0.953" layer="51"/>
-<rectangle x1="2.823" y1="-1.1" x2="2.973" y2="1.1" layer="51"/>
-<rectangle x1="0.573" y1="-1.6" x2="0.973" y2="1.6" layer="21"/>
-<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
-</package>
-<package name="C7343/T">
-<description>&lt;b&gt;SMD CHIP TANT&lt;/b&gt;&lt;p&gt;
-chip tantalum</description>
-<wire x1="-4.648" y1="2.253" x2="4.6481" y2="2.253" width="0.0508" layer="39"/>
-<wire x1="4.6481" y1="2.253" x2="4.6481" y2="-2.253" width="0.0508" layer="39"/>
-<wire x1="4.6481" y1="-2.253" x2="-4.648" y2="-2.253" width="0.0508" layer="39"/>
-<wire x1="-4.648" y1="-2.253" x2="-4.648" y2="2.253" width="0.0508" layer="39"/>
-<wire x1="-4.826" y1="2.159" x2="1.524" y2="2.159" width="0.2032" layer="21"/>
-<wire x1="1.524" y1="2.159" x2="5.461" y2="2.159" width="0.2032" layer="21"/>
-<wire x1="5.461" y1="2.159" x2="5.461" y2="-2.159" width="0.2032" layer="21"/>
-<wire x1="5.461" y1="-2.159" x2="1.524" y2="-2.159" width="0.2032" layer="21"/>
-<wire x1="1.524" y1="-2.159" x2="-4.826" y2="-2.159" width="0.2032" layer="21"/>
-<wire x1="-4.826" y1="-2.159" x2="-4.826" y2="2.159" width="0.2032" layer="21"/>
-<wire x1="1.524" y1="2.159" x2="1.524" y2="-2.159" width="0.2032" layer="21"/>
-<smd name="+" x="3.175" y="0" dx="2.6" dy="2.4" layer="1"/>
-<smd name="-" x="-3.175" y="0" dx="2.6" dy="2.4" layer="1"/>
-<text x="-4.826" y="2.54" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-4.826" y="-3.048" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.5001" y1="-1" x2="0.5001" y2="1" layer="35"/>
-<rectangle x1="4.777" y1="-2.2" x2="5.477" y2="2.2" layer="21"/>
-</package>
-<package name="CSV-H">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic H&lt;p&gt; 
-12.5 mm dia</description>
-<wire x1="6.35" y1="6.5088" x2="6.35" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="6.35" y1="-1.27" x2="6.35" y2="-6.5088" width="0.2032" layer="21"/>
-<wire x1="6.35" y1="-6.5088" x2="-3.81" y2="-6.5087" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="-6.5087" x2="-6.35" y2="-3.9687" width="0.2032" layer="21"/>
-<wire x1="-6.35" y1="-3.9687" x2="-6.35" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="6.35" y1="6.5088" x2="-3.81" y2="6.5087" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="6.5087" x2="-6.35" y2="3.9687" width="0.2032" layer="21"/>
-<wire x1="-6.35" y1="3.9687" x2="-6.35" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="2.6976" y1="5.5" x2="2.6976" y2="-5.5" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="6.1846" width="0.1016" layer="51"/>
-<smd name="+" x="-5.588" y="0" dx="5.08" dy="1.9304" layer="1"/>
-<smd name="-" x="5.588" y="0" dx="5.08" dy="1.9304" layer="1"/>
-<text x="6.858" y="3.048" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="6.858" y="-4.064" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-7.2144" y1="-0.4763" x2="-6.1031" y2="0.4763" layer="51"/>
-<rectangle x1="6.08" y1="-0.4763" x2="7.1913" y2="0.4763" layer="51"/>
-<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
-</package>
-<package name="CSV-J">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic J&lt;p&gt; 
-16 mm dia</description>
-<wire x1="8.5725" y1="8.4138" x2="8.5725" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="8.5725" y1="-1.27" x2="8.5725" y2="-8.4138" width="0.2032" layer="21"/>
-<wire x1="8.5725" y1="-8.4138" x2="-6.0325" y2="-8.4137" width="0.2032" layer="21"/>
-<wire x1="-6.0325" y1="-8.4137" x2="-8.5725" y2="-5.8737" width="0.2032" layer="21"/>
-<wire x1="-8.5725" y1="-5.8737" x2="-8.5725" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="8.5725" y1="8.4138" x2="-6.0325" y2="8.4137" width="0.2032" layer="21"/>
-<wire x1="-6.0325" y1="8.4137" x2="-8.5725" y2="5.8737" width="0.2032" layer="21"/>
-<wire x1="-8.5725" y1="5.8737" x2="-8.5725" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="2.6976" y1="7.5638" x2="2.6976" y2="-7.5638" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="8.1394" width="0.1016" layer="51"/>
-<smd name="+" x="-7.366" y="0" dx="5.588" dy="1.9304" layer="1"/>
-<smd name="-" x="7.366" y="0" dx="5.588" dy="1.9304" layer="1"/>
-<text x="9.144" y="3.556" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="9.144" y="-5.08" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-9.2782" y1="-0.4763" x2="-8.1669" y2="0.4763" layer="51"/>
-<rectangle x1="8.1437" y1="-0.4763" x2="9.255" y2="0.4763" layer="51"/>
-<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
-</package>
-<package name="CSV-K">
-<description>&lt;b&gt;SMD ELECTROLYTIC&lt;/b&gt; - Panasonic K&lt;p&gt; 
-18 mm dia</description>
-<wire x1="9.525" y1="9.3663" x2="9.525" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="9.525" y1="-1.27" x2="9.525" y2="-9.3663" width="0.2032" layer="21"/>
-<wire x1="9.525" y1="-9.3663" x2="-6.985" y2="-9.3662" width="0.2032" layer="21"/>
-<wire x1="-6.985" y1="-9.3662" x2="-9.525" y2="-6.8262" width="0.2032" layer="21"/>
-<wire x1="-9.525" y1="-6.8262" x2="-9.525" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="9.525" y1="9.3663" x2="-6.985" y2="9.3662" width="0.2032" layer="21"/>
-<wire x1="-6.985" y1="9.3662" x2="-9.525" y2="6.8262" width="0.2032" layer="21"/>
-<wire x1="-9.525" y1="6.8262" x2="-9.525" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="2.6976" y1="8.5163" x2="2.6976" y2="-8.5163" width="0.1016" layer="51"/>
-<circle x="0" y="0" radius="8.9442" width="0.1016" layer="51"/>
-<smd name="+" x="-8.128" y="0" dx="5.588" dy="1.9304" layer="1"/>
-<smd name="-" x="8.128" y="0" dx="5.588" dy="1.9304" layer="1"/>
-<text x="10.16" y="4.318" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="10.16" y="-5.334" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-10.0719" y1="-0.4763" x2="-8.9606" y2="0.4763" layer="51"/>
-<rectangle x1="8.9374" y1="-0.4763" x2="10.0487" y2="0.4763" layer="51"/>
-<rectangle x1="-0.7" y1="-0.7" x2="0.7" y2="0.7" layer="35"/>
-</package>
-</packages>
-<symbols>
-<symbol name="CP-">
-<wire x1="0.635" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="0.635" y1="1.5875" x2="0.635" y2="0" width="0.508" layer="94"/>
-<wire x1="0.635" y1="0" x2="0.635" y2="-1.5875" width="0.508" layer="94"/>
-<wire x1="-0.381" y1="0" x2="-0.3811" y2="0" width="0.1524" layer="94"/>
-<wire x1="-0.3811" y1="0" x2="-2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="-0.365" y1="0" x2="-0.9017" y2="-1.5367" width="0.4064" layer="94" curve="-37.878659" cap="flat"/>
-<wire x1="-0.8979" y1="1.5144" x2="-0.3811" y2="0" width="0.4064" layer="94" curve="-37.377473" cap="flat"/>
-<text x="3.175" y="0.635" size="1.778" layer="95">&gt;NAME</text>
-<text x="-5.08" y="-3.81" size="1.778" layer="96">&gt;VALUE</text>
-<text x="1.27" y="0.635" size="1.4224" layer="94" ratio="12">+</text>
-<pin name="-" x="-2.54" y="0" visible="off" length="point" direction="pas"/>
-<pin name="+" x="2.54" y="0" visible="off" length="point" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="CP_" prefix="C" uservalue="yes">
-<description>&lt;B&gt;POLARIZED CAP&lt;/B&gt;</description>
-<gates>
-<gate name="G$1" symbol="CP-" x="0" y="0"/>
-</gates>
-<devices>
-<device name="SV-A" package="CSV-A">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-B" package="CSV-B">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-C" package="CSV-C">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-D" package="CSV-D">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-E/F" package="CSV-E/F">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-G" package="CSV-G">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3216" package="C3216/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3216-18" package="C3216-18/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3528" package="C3528/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3528-21" package="C3528-21/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="6032" package="C6032/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="6032-28" package="C6032-28/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="7343" package="C7343/T">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-H" package="CSV-H">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-J" package="CSV-J">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SV-K" package="CSV-K">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="rectifier" urn="urn:adsk.eagle:library:336">
 <description>&lt;b&gt;Rectifiers&lt;/b&gt;&lt;p&gt;
 General Instrument, Semikron, Diotec, Fagor&lt;p&gt;
@@ -10593,7 +10105,7 @@ Source: www.kingbright.com</description>
 <part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C1" library="rc-master-smd" deviceset="CP_" device="SV-G" value="1000u"/>
+<part name="C1" library="OwnDevices" library_urn="urn:adsk.eagle:library:19498084" deviceset="CP_" device="" package3d_urn="urn:adsk.eagle:package:37698300/2" value="1000u"/>
 <part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="B1" library="rectifier" library_urn="urn:adsk.eagle:library:336" deviceset="DB?*G" device="S10" package3d_urn="urn:adsk.eagle:package:23898/1" technology="4"/>
 <part name="GND10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
