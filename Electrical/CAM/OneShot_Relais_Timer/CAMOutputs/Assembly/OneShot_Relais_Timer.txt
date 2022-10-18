@@ -1,0 +1,18 @@
+Stückliste exportiert aus C:/Users/Markus/Documents/EAGLE/projects/OneShot_Relais_Timer/Electrical/OneShot_Relais_Timer.sch am 17.10.2022 18:20
+
+Qty Value           Device          Package             Parts Description                                            MF               MPN      OC_FARNELL OC_NEWARK POPULARITY SPICEPREFIX
+1                   DIODE-SOD80C    SOD80C              D1    DIODE                                                                                                 9                     
+1                   EI30-12.5       EI30-1              TR1   TRANSFORMER                                                                                           4                     
+1                   LED5MM          LED5MM              LED1  LED                                                                                                   93                    
+1                   PINHD-1X9       1X09                JP2   PIN HEADER                                                                                            13                    
+1   1000u           CP_             CSV-G               C1                                                                                                                                
+1   10k             R-EU_R0805      R0805               R1    RESISTOR, European symbol                                                                             86         R          
+1   680             R-EU_R0805      R0805               R2    RESISTOR, European symbol                                                                             86         R          
+1   78L05SOT223     78L05SOT223     SOT223              DA2                                                                                                                               
+1   78L12TO220V     78L12TO220V     TO220V              DA1                                                                                                                               
+1   ATTINY204SOIC14 ATTINY204SOIC14 SOIC127P600X175-14N IC2   MICROCONTROLLER                                                                                                             
+1   BC847           BC847           SOT23               T1    NPN TRANSISTOR                                                                                        5                     
+1   DBS104G         DBS104G         DBS                 B1    Single Phase 1.0 AMP Glass Passivated Bridge Rectifier                                                0                     
+1   MKDSN1,5/3-5,08 MKDSN1,5/3-5,08 MKDSN1,5/3-5,08     X1    MKDSN 1,5/ 3-5,08 Printklemme                                                                         0                     
+1   RE030012        RE030012        RE-SCHRACK          K1    Miniature PCB Relay 1 pole 6 A SCHRACK                 TYCO ELECTRONICS RE030012 515840     17M1743   0                     
+1   UPDI            PINHD-1X3       1X03                JP1   PIN HEADER                                                                                            92                    

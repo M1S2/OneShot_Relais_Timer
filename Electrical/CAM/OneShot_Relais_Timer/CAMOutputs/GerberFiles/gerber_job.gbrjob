@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2022-10-17T16:20:12Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "OneShot_Relais_Timer"
+        },
+        "Owner": "Markus Scheich <markus.scheich@gmx.de>",
+        "Size": {
+            "X": 65,
+            "Y": 62.994641
+        }
+    }
+}

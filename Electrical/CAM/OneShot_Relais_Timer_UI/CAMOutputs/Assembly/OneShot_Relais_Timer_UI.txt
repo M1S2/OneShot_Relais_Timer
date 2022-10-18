@@ -1,0 +1,9 @@
+Stückliste exportiert aus C:/Users/Markus/Documents/EAGLE/projects/OneShot_Relais_Timer/Electrical/OneShot_Relais_Timer_UI.sch am 18.10.2022 18:39
+
+Qty Value      Device        Package              Parts                           Description                           MF MPN OC_FARNELL OC_NEWARK POPULARITY SPICEPREFIX
+1              FE09-1        FE09                 JP1                             FEMALE HEADER                                unknown    unknown   2                     
+8   150        R-EU_R0805    R0805                R3, R4, R5, R6, R7, R8, R9, R10 RESISTOR, European symbol                                         86         R          
+1   4511       4511          SOIC127P1032X265-16L IC1                             BCD to 7-segment LATCH/DECODER/DRIVER                                                   
+1   SC56-11EWA 7SEG-CK       7SEG-13              D2                              7-segment DISPLAY                                                 3                     
+1   SET        KURZHUBTASTER B3F-10XX             S1                              OMRON SWITCH                                                                            
+1   START/STOP KURZHUBTASTER B3F-10XX             S2                              OMRON SWITCH                                                                            
