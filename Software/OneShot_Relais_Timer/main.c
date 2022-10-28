@@ -5,7 +5,7 @@
  * Author : Markus
  */ 
 
-#define F_CPU 1000000UL
+#define F_CPU 4000000UL
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -13,24 +13,24 @@
 
 //#define PIN_BTN_SET			PINA1
 //#define PIN_BTN_START_STOP	PINA2
-#define PIN_CTRL_RELAY		PORTA4
-#define PIN_BCD_7SEG_DOT	PORTA7
+#define PIN_CTRL_RELAY			PIN4_bp
+#define PIN_BCD_7SEG_DOT		PIN7_bp
 
-/*#define PIN_BCD_7SEG_1		PORTB0
-#define PIN_BCD_7SEG_2		PORTB1
-#define PIN_BCD_7SEG_3		PORTB2
-#define PIN_BCD_7SEG_4		PORTB3*/
+/*#define PIN_BCD_7SEG_1		PIN0_bp
+#define PIN_BCD_7SEG_2			PIN1_bp
+#define PIN_BCD_7SEG_3			PIN2_bp
+#define PIN_BCD_7SEG_4			PIN3_bp */
 
-#define CTRL_RELAY_ON		PORTA |= (1<<PIN_CTRL_RELAY);
-#define CTRL_RELAY_OFF		PORTA &= ~(1<<PIN_CTRL_RELAY);
+#define CTRL_RELAY_ON		PORTA_OUT |= (1<<PIN_CTRL_RELAY);
+#define CTRL_RELAY_OFF		PORTA_OUT &= ~(1<<PIN_CTRL_RELAY);
 
-#define SET_7SEG(number)	PORTB = number;	
-#define DOT_7SEG_ON			PORTA |= (1<<PIN_BCD_7SEG_DOT);
-#define DOT_7SEG_OFF		PORTA &= ~(1<<PIN_BCD_7SEG_DOT);
-#define DOT_7SEG_TOGGLE		PORTA ^= (1<<PIN_BCD_7SEG_DOT);
+#define SET_7SEG(number)	PORTB_OUT = number;	
+#define DOT_7SEG_ON			PORTA_OUT |= (1<<PIN_BCD_7SEG_DOT);
+#define DOT_7SEG_OFF		PORTA_OUT &= ~(1<<PIN_BCD_7SEG_DOT);
+#define DOT_7SEG_TOGGLE		PORTA_OUT ^= (1<<PIN_BCD_7SEG_DOT);
 
-#define IS_BTN_SET_PRESSED			(!(PINA & (1<<PA1)))
-#define IS_BTN_START_STOP_PRESSED	(!(PINA & (1<<PA2)))
+#define IS_BTN_SET_PRESSED			(!(PORTA_IN & PIN1_bm))
+#define IS_BTN_START_STOP_PRESSED	(!(PORTA_IN & PIN2_bm))
 
 #define DEFAULT_HOURS		3
 
@@ -49,18 +49,16 @@ uint16_t actualSeconds;
 
 // ################################################################################
 
-// 7-Segment-Dot not working!!!
-
 int main(void)
 {
 	// Init IO registers
-	DDRA &= ~(1<<DDA1);					// Set BTN_SET Pin (PA1) as input
-	DDRA &= ~(1<<DDA2);					// Set BTN_START_STOP Pin (PA2) as input
-	DDRA |= (1<<DDA4);					// Set CTRL_RELAY Pin (PA4) as output
-	DDRA |= (1<<DDA7);					// Set BCD_7SEG_DOT Pin (PA7) as output
-	DDRB = 0xF;							// Set BCD_7SEG_1 to BCD_7SEG_4 Pins (PB0..PB4) as outputs
-	PORTA |= (1<<PORTA1);				// Enable Pull-Up for BTN_SET Pin (PA1)
-	PORTA |= (1<<PORTA2);				// Enable Pull-Up for BTN_START_STOP Pin (PA2)
+	PORTA_DIR &= ~PIN1_bm;				// Set BTN_SET Pin (PA1) as input
+	PORTA_DIR &= ~PIN2_bm;				// Set BTN_START_STOP Pin (PA2) as input
+	PORTA_DIR |= PIN4_bm;				// Set CTRL_RELAY Pin (PA4) as output
+	PORTA_DIR |= PIN7_bm;				// Set BCD_7SEG_DOT Pin (PA7) as output
+	PORTB_DIR = 0xF;					// Set BCD_7SEG_1 to BCD_7SEG_4 Pins (PB0..PB4) as outputs
+	PORTA_PIN1CTRL |= PORT_PULLUPEN_bm;	// Enable Pull-Up for BTN_SET Pin (PA1)
+	PORTA_PIN2CTRL |= PORT_PULLUPEN_bm;	// Enable Pull-Up for BTN_START_STOP Pin (PA2)
 	
 	currentState = STATE_SET;
 	setHours = DEFAULT_HOURS;
@@ -68,7 +66,7 @@ int main(void)
 	SET_7SEG(setHours)
 	
 	while (1)
-	{
+	{		
 		switch(currentState)
 		{
 			case STATE_SET:
@@ -116,6 +114,7 @@ int main(void)
 				CTRL_RELAY_OFF
 				setHours = DEFAULT_HOURS;
 				SET_7SEG(setHours)
+				DOT_7SEG_OFF
 				break;
 			}
 		}
