@@ -8,18 +8,13 @@
 #define F_CPU 4000000UL
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
+#include "Buttons_Debounce.h"
 
 // ################################################################################
 
-//#define PIN_BTN_SET			PINA1
-//#define PIN_BTN_START_STOP	PINA2
-#define PIN_CTRL_RELAY			PIN4_bp
-#define PIN_BCD_7SEG_DOT		PIN7_bp
-
-/*#define PIN_BCD_7SEG_1		PIN0_bp
-#define PIN_BCD_7SEG_2			PIN1_bp
-#define PIN_BCD_7SEG_3			PIN2_bp
-#define PIN_BCD_7SEG_4			PIN3_bp */
+#define PIN_CTRL_RELAY		PIN4_bp
+#define PIN_BCD_7SEG_DOT	PIN7_bp
 
 #define CTRL_RELAY_ON		PORTA_OUT |= (1<<PIN_CTRL_RELAY);
 #define CTRL_RELAY_OFF		PORTA_OUT &= ~(1<<PIN_CTRL_RELAY);
@@ -49,6 +44,18 @@ uint16_t actualSeconds;
 
 // ################################################################################
 
+/*************************************************
+* ISR for the TCA0 Overflow
+* This timer is used for button handling
+**************************************************/
+ISR(TCA0_OVF_vect)
+{
+	debounce_timer_interrupt();	
+	TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;		//The interrupt flag has to be cleared manually (by writing a '1' to it)
+}
+
+// ################################################################################
+
 int main(void)
 {
 	// Init IO registers
@@ -59,6 +66,13 @@ int main(void)
 	PORTB_DIR = 0xF;					// Set BCD_7SEG_1 to BCD_7SEG_4 Pins (PB0..PB4) as outputs
 	PORTA_PIN1CTRL |= PORT_PULLUPEN_bm;	// Enable Pull-Up for BTN_SET Pin (PA1)
 	PORTA_PIN2CTRL |= PORT_PULLUPEN_bm;	// Enable Pull-Up for BTN_START_STOP Pin (PA2)
+
+	// Init Timer0 (TCA0, used for button handling)
+	TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL2_bm | TCA_SINGLE_CLKSEL1_bm | TCA_SINGLE_CLKSEL0_bm | TCA_SINGLE_ENABLE_bm;	// Set Prescaler to 1024 (CLKSEL=7 (Bits 3..1)), Enable Timer (Bit 0)
+	TCA0.SINGLE.PER = (uint16_t)(F_CPU / 1024 * 10e-3 + 0.5);				// preload for 10ms
+	TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;								// Enable overflow interrupt
+
+	sei();
 	
 	currentState = STATE_SET;
 	setHours = DEFAULT_HOURS;
@@ -71,15 +85,15 @@ int main(void)
 		{
 			case STATE_SET:
 			{
-				if(IS_BTN_SET_PRESSED)
+				if(get_key_press(1 << KEY_SET) || get_key_rpt(1 << KEY_SET))
 				{
 					setHours++;
 					setHours = setHours % 10;
 					SET_7SEG(setHours)
 				}
-				else if(IS_BTN_START_STOP_PRESSED)
+				else if(get_key_press(1 << KEY_START_STOP))
 				{
-					actualSeconds = setHours * 1;		//* 3600; !!!
+					actualSeconds = setHours * 1;		// * 3600; !!!
 					currentState = STATE_COUNTDOWN;
 					CTRL_RELAY_ON
 				}
@@ -92,7 +106,7 @@ int main(void)
 			case STATE_COUNTDOWN:
 			{
 				DOT_7SEG_TOGGLE
-				if(IS_BTN_START_STOP_PRESSED)
+				if(get_key_press(1 << KEY_START_STOP))
 				{
 					// Actions are outside of this if statement	
 				}
