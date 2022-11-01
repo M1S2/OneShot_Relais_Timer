@@ -9,6 +9,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <avr/eeprom.h>
 #include "Buttons_Debounce.h"
 
 // ################################################################################
@@ -26,8 +27,7 @@
 
 #define IS_BTN_SET_PRESSED			(!(PORTA_IN & PIN1_bm))
 #define IS_BTN_START_STOP_PRESSED	(!(PORTA_IN & PIN2_bm))
-
-#define DEFAULT_HOURS			3		// default number of hours that are used at startup
+		
 #define SECONDS_FOR_7SEG_DIGIT	1		// This number of seconds must elapse for the 7 segment digit to change
 
 // ################################################################################
@@ -42,6 +42,9 @@ volatile States_t currentState;
 
 uint8_t setHours;
 volatile uint16_t remainingSeconds;
+
+
+EEMEM uint8_t ee_defaultHours;			// default number of hours that are read from / saved to EEPROM
 
 // ################################################################################
 
@@ -70,15 +73,6 @@ ISR(TCB0_INT_vect)
 	TCB0.INTFLAGS = TCB_CAPT_bm;					//The interrupt flag has to be cleared manually (by writing a '1' to it)
 }
 
-/*************************************************
-* ISR for the RTC Overflow
-* This RTC is used for hour counting
-**************************************************/
-/*ISR(RTC_CNT_vect)
-{
-	RTC.INTFLAGS = RTC_OVF_bm;						//The interrupt flag has to be cleared manually (by writing a '1' to it)
-}*/
-
 // ################################################################################
 
 int main(void)
@@ -102,17 +96,14 @@ int main(void)
 	TCB0.CCMP = (uint16_t)(F_CPU / 1024 * 1000e-3 + 0.5);						// preload for 1000ms
 	TCB0.INTCTRL = TCB_CAPT_bm;													// Enable overflow interrupt
 
-/*
-	// Init RTC to count every second. Overflow interrupt is generated every hour.
-	RTC.CLKSEL = RTC_CLKSEL_INT1K_gc;											// Set clock to 1.024 kHz
-	RTC.PER = 5;		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	RTC.CTRLA = RTC_RUNSTDBY_bm | RTC_PRESCALER_DIV1024_gc | RTC_RTCEN_bm;		// Set clock prescaler to 1024, Enable RTC
-	RTC.INTCTRL = RTC_OVF_bm;													// Enable overflow interrupt
-*/
 	sei();
 	
 	currentState = STATE_SET;
-	setHours = DEFAULT_HOURS;
+	setHours = eeprom_read_byte(&ee_defaultHours);	// read the default hours from the EEPROM
+	if(setHours < 1 || setHours > 9)				// read value is out of valid range
+	{
+		setHours = 3;
+	}
 	remainingSeconds = 0;
 	SET_7SEG(setHours)
 	
@@ -131,6 +122,7 @@ int main(void)
 				}
 				else if(get_key_press(1 << KEY_START_STOP))
 				{
+					eeprom_update_byte(&ee_defaultHours, setHours);		// write the setHours to the EEPROM as new default value
 					remainingSeconds = setHours * SECONDS_FOR_7SEG_DIGIT;
 					currentState = STATE_COUNTDOWN;
 					CTRL_RELAY_ON
@@ -147,7 +139,7 @@ int main(void)
 				{
 					currentState = STATE_SET;
 					CTRL_RELAY_OFF
-					setHours = DEFAULT_HOURS;
+					setHours = eeprom_read_byte(&ee_defaultHours);		// read the default hours from the EEPROM
 					SET_7SEG(setHours)
 					DOT_7SEG_OFF
 				}
