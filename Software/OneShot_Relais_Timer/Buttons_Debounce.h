@@ -18,7 +18,7 @@
 
 #define REPEAT_MASK     (1<<KEY_SET)		// repeat: KEY_SET
 #define REPEAT_START    50					// after 500ms
-#define REPEAT_NEXT     25					// every 250ms
+#define REPEAT_NEXT     50					// every 500ms
 
 void debounce_timer_interrupt();
 uint8_t get_key_press( uint8_t key_mask );
