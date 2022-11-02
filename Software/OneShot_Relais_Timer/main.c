@@ -5,7 +5,7 @@
  * Author : Markus
  */ 
 
-#define F_CPU 4000000UL
+#define F_CPU 3300000UL		// 20 MHz / 6
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -28,7 +28,7 @@
 #define IS_BTN_SET_PRESSED			(!(PORTA_IN & PIN1_bm))
 #define IS_BTN_START_STOP_PRESSED	(!(PORTA_IN & PIN2_bm))
 		
-#define SECONDS_FOR_7SEG_DIGIT	1		// This number of seconds must elapse for the 7 segment digit to change
+#define SECONDS_FOR_7SEG_DIGIT	3600		// This number of seconds must elapse for the 7 segment digit to change
 
 // ################################################################################
 
