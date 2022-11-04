@@ -5,7 +5,7 @@
  * Author : Markus
  */ 
 
-#define F_CPU 3300000UL		// 20 MHz / 6
+#define F_CPU 3333333UL		// 20 MHz / 6
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -19,6 +19,7 @@
 
 #define CTRL_RELAY_ON		PORTA_OUT |= (1<<PIN_CTRL_RELAY);
 #define CTRL_RELAY_OFF		PORTA_OUT &= ~(1<<PIN_CTRL_RELAY);
+#define CTRL_RELAY_TOGGLE	PORTA_OUT ^= (1<<PIN_CTRL_RELAY);
 
 #define SET_7SEG(number)	PORTB_OUT = number;	
 #define DOT_7SEG_ON			PORTA_OUT |= (1<<PIN_BCD_7SEG_DOT);
@@ -107,6 +108,9 @@ int main(void)
 	remainingSeconds = 0;
 	SET_7SEG(setHours)
 	
+	DOT_7SEG_OFF
+	CTRL_RELAY_OFF
+	
 	while (1)
 	{		
 		switch(currentState)
@@ -117,15 +121,23 @@ int main(void)
 				{
 					setHours++;
 					setHours = setHours % 10;
-					if(setHours == 0) { setHours = 1; }		// 0 is not allowed as value
 					SET_7SEG(setHours)
 				}
 				else if(get_key_press(1 << KEY_START_STOP))
 				{
-					eeprom_update_byte(&ee_defaultHours, setHours);		// write the setHours to the EEPROM as new default value
+					// If hours are set to 0, the relay can be toggled using the start stop button. The countdown can be changed from active during countdown to non-active during countdown.
+					if(setHours == 0)
+					{
+						CTRL_RELAY_TOGGLE
+					}
+					else
+					{
+						eeprom_update_byte(&ee_defaultHours, setHours);		// write the setHours to the EEPROM as new default value
+						currentState = STATE_COUNTDOWN;
+						CTRL_RELAY_TOGGLE
+					}
+					
 					remainingSeconds = setHours * SECONDS_FOR_7SEG_DIGIT;
-					currentState = STATE_COUNTDOWN;
-					CTRL_RELAY_ON
 				}
 				else
 				{
@@ -138,7 +150,7 @@ int main(void)
 				if(get_key_press(1 << KEY_START_STOP) || remainingSeconds <= 0)
 				{
 					currentState = STATE_SET;
-					CTRL_RELAY_OFF
+					CTRL_RELAY_TOGGLE
 					setHours = eeprom_read_byte(&ee_defaultHours);		// read the default hours from the EEPROM
 					SET_7SEG(setHours)
 					DOT_7SEG_OFF
