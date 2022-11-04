@@ -60,10 +60,10 @@ ISR(TCA0_OVF_vect)
 }
 
 /*************************************************
-* ISR for the TCB0 Overflow
-* This timer is used for counting seconds
+* ISR for the RTC PIT Interrupt
+* This interrupt is used for counting seconds
 **************************************************/
-ISR(TCB0_INT_vect)
+ISR(RTC_PIT_vect)
 {
 	if(currentState == STATE_COUNTDOWN)
 	{
@@ -71,7 +71,7 @@ ISR(TCB0_INT_vect)
 		remainingSeconds--;
 	}
 	
-	TCB0.INTFLAGS = TCB_CAPT_bm;					//The interrupt flag has to be cleared manually (by writing a '1' to it)
+	RTC.PITINTFLAGS = RTC_PI_bm;					//The interrupt flag has to be cleared manually (by writing a '1' to it)
 }
 
 // ################################################################################
@@ -89,13 +89,13 @@ int main(void)
 
 	// Init Timer (TCA0, used for button handling)
 	TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL2_bm | TCA_SINGLE_CLKSEL1_bm | TCA_SINGLE_CLKSEL0_bm | TCA_SINGLE_ENABLE_bm;	// Set Prescaler to 1024 (CLKSEL=7 (Bits 3..1)), Enable Timer (Bit 0)
-	TCA0.SINGLE.PER = (uint16_t)(F_CPU / 1024 * 10e-3 + 0.5);					// preload for 10ms
+	TCA0.SINGLE.PER = (uint16_t)(F_CPU / 1024 * 10e-3 + 0.5);					// preload for 10 ms
 	TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;									// Enable overflow interrupt
 	
-	// Init Timer (TCB0, used for counting seconds)
-	TCB0.CTRLA = TCB_CLKSEL1_bm | TCB_ENABLE_bm;								// Use clock source from TCA0, Enable Timer (Bit 0)
-	TCB0.CCMP = (uint16_t)(F_CPU / 1024 * 1000e-3 + 0.5);						// preload for 1000ms
-	TCB0.INTCTRL = TCB_CAPT_bm;													// Enable overflow interrupt
+	// Init PIT (Periodic interrupt timer, used for counting seconds)
+	RTC.CLKSEL = RTC_CLKSEL_INT1K_gc;						// Use internal 1.024 kHz clock
+	RTC.PITINTCTRL = RTC_PI_bm;								// Enable PIT interrupt
+	RTC.PITCTRLA = RTC_PERIOD_CYC1024_gc | RTC_PITEN_bm;	// Set period to 1024 clock cycles (every second) and enable the PIT
 
 	sei();
 	
