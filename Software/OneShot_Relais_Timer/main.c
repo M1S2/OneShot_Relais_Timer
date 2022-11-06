@@ -25,9 +25,6 @@
 #define DOT_7SEG_ON			PORTA_OUT |= (1<<PIN_BCD_7SEG_DOT);
 #define DOT_7SEG_OFF		PORTA_OUT &= ~(1<<PIN_BCD_7SEG_DOT);
 #define DOT_7SEG_TOGGLE		PORTA_OUT ^= (1<<PIN_BCD_7SEG_DOT);
-
-#define IS_BTN_SET_PRESSED			(!(PORTA_IN & PIN1_bm))
-#define IS_BTN_START_STOP_PRESSED	(!(PORTA_IN & PIN2_bm))
 		
 #define SECONDS_FOR_7SEG_DIGIT	3600		// This number of seconds must elapse for the 7 segment digit to change
 
@@ -159,6 +156,9 @@ int main(void)
 				{
 					SET_7SEG(remainingSeconds / SECONDS_FOR_7SEG_DIGIT)
 				}
+				
+				get_key_press(1 << KEY_SET);		// This is only consumed here to not trigger the set button in SET mode after leaving COUNTDOWN mode (when button was pressed in COUNTDOWN mode)
+				
 				break;
 			}
 		}		
