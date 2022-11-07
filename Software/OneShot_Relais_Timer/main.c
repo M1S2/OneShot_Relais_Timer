@@ -14,52 +14,54 @@
 
 // ################################################################################
 
-#define PIN_CTRL_RELAY		PIN4_bp
-#define PIN_BCD_7SEG_DOT	PIN7_bp
+#define PIN_CTRL_RELAY		PIN4_bp									/**< Pin used to control the relay and the led showing the relay state */
+#define PIN_BCD_7SEG_DOT	PIN7_bp									/**< Pin used to control the 7-segment dot */
 
-#define CTRL_RELAY_ON		PORTA_OUT |= (1<<PIN_CTRL_RELAY);
-#define CTRL_RELAY_OFF		PORTA_OUT &= ~(1<<PIN_CTRL_RELAY);
-#define CTRL_RELAY_TOGGLE	PORTA_OUT ^= (1<<PIN_CTRL_RELAY);
+#define CTRL_RELAY_ON		PORTA_OUT |= (1<<PIN_CTRL_RELAY);		/**< Switch the relay on */
+#define CTRL_RELAY_OFF		PORTA_OUT &= ~(1<<PIN_CTRL_RELAY);		/**< Switch the relay off */
+#define CTRL_RELAY_TOGGLE	PORTA_OUT ^= (1<<PIN_CTRL_RELAY);		/**< Toggle the relay state */
 
-#define SET_7SEG(number)	PORTB_OUT = number;	
-#define DOT_7SEG_ON			PORTA_OUT |= (1<<PIN_BCD_7SEG_DOT);
-#define DOT_7SEG_OFF		PORTA_OUT &= ~(1<<PIN_BCD_7SEG_DOT);
-#define DOT_7SEG_TOGGLE		PORTA_OUT ^= (1<<PIN_BCD_7SEG_DOT);
+#define SET_7SEG(number)	PORTB_OUT = number;						/**< Set the number displayed by the 7-segment-display */
+#define DOT_7SEG_ON			PORTA_OUT |= (1<<PIN_BCD_7SEG_DOT);		/**< Switch the 7-segment dot on */
+#define DOT_7SEG_OFF		PORTA_OUT &= ~(1<<PIN_BCD_7SEG_DOT);	/**< Switch the 7-segment dot off */
+#define DOT_7SEG_TOGGLE		PORTA_OUT ^= (1<<PIN_BCD_7SEG_DOT);		/**< Toggle the 7-segment dot */
 		
-#define SECONDS_FOR_7SEG_DIGIT	3600		// This number of seconds must elapse for the 7 segment digit to change
+#define SECONDS_FOR_7SEG_DIGIT	3600								/**< This number of seconds must elapse for the 7 segment digit to change */
 
 // ################################################################################
 
+/**
+ * Enumeration with the statemachine states.
+ */
 typedef enum States
 {
-	STATE_SET,
-	STATE_COUNTDOWN
+	STATE_SET,							/**< SET state. This is used to modify the hours for the countdown */
+	STATE_COUNTDOWN						/**< COUNTDOWN state. This is used to keep the relay on for some time */
 }States_t;
 
-volatile States_t currentState;
+volatile States_t currentState;			/**< Variable holding the current statemachine state */
+uint8_t setHours;						/**< Variable holding the set hours */
+volatile uint16_t remainingSeconds;		/**< Variable used to track the remaining seconds */
 
-uint8_t setHours;
-volatile uint16_t remainingSeconds;
 
-
-EEMEM uint8_t ee_defaultHours;			// default number of hours that are read from / saved to EEPROM
+EEMEM uint8_t ee_defaultHours;			/**< default number of hours that are read from / saved to EEPROM */
 
 // ################################################################################
 
-/*************************************************
-* ISR for the TCA0 Overflow
-* This timer is used for button handling
-**************************************************/
+/************************************************************************/
+/* ISR for the TCA0 Overflow											*/
+/* This timer is used for button handling								*/
+/************************************************************************/
 ISR(TCA0_OVF_vect)
 {		
 	debounce_timer_interrupt();	
 	TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;		//The interrupt flag has to be cleared manually (by writing a '1' to it)
 }
 
-/*************************************************
-* ISR for the RTC PIT Interrupt
-* This interrupt is used for counting seconds
-**************************************************/
+/************************************************************************/
+/* ISR for the RTC PIT Interrupt										*/
+/* This interrupt is used for counting seconds							*/
+/************************************************************************/
 ISR(RTC_PIT_vect)
 {
 	if(currentState == STATE_COUNTDOWN)
@@ -76,18 +78,18 @@ ISR(RTC_PIT_vect)
 int main(void)
 {
 	// Init IO registers
-	PORTA_DIR &= ~PIN1_bm;				// Set BTN_SET Pin (PA1) as input
-	PORTA_DIR &= ~PIN2_bm;				// Set BTN_START_STOP Pin (PA2) as input
-	PORTA_DIR |= PIN4_bm;				// Set CTRL_RELAY Pin (PA4) as output
-	PORTA_DIR |= PIN7_bm;				// Set BCD_7SEG_DOT Pin (PA7) as output
-	PORTB_DIR = 0xF;					// Set BCD_7SEG_1 to BCD_7SEG_4 Pins (PB0..PB4) as outputs
-	PORTA_PIN1CTRL |= PORT_PULLUPEN_bm;	// Enable Pull-Up for BTN_SET Pin (PA1)
-	PORTA_PIN2CTRL |= PORT_PULLUPEN_bm;	// Enable Pull-Up for BTN_START_STOP Pin (PA2)
+	PORTA_DIR &= ~PIN1_bm;					// Set BTN_SET Pin (PA1) as input
+	PORTA_DIR &= ~PIN2_bm;					// Set BTN_START_STOP Pin (PA2) as input
+	PORTA_DIR |= PIN4_bm;					// Set CTRL_RELAY Pin (PA4) as output
+	PORTA_DIR |= PIN7_bm;					// Set BCD_7SEG_DOT Pin (PA7) as output
+	PORTB_DIR = 0xF;						// Set BCD_7SEG_1 to BCD_7SEG_4 Pins (PB0..PB4) as outputs
+	PORTA_PIN1CTRL |= PORT_PULLUPEN_bm;		// Enable Pull-Up for BTN_SET Pin (PA1)
+	PORTA_PIN2CTRL |= PORT_PULLUPEN_bm;		// Enable Pull-Up for BTN_START_STOP Pin (PA2)
 
 	// Init Timer (TCA0, used for button handling)
 	TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL2_bm | TCA_SINGLE_CLKSEL1_bm | TCA_SINGLE_CLKSEL0_bm | TCA_SINGLE_ENABLE_bm;	// Set Prescaler to 1024 (CLKSEL=7 (Bits 3..1)), Enable Timer (Bit 0)
-	TCA0.SINGLE.PER = (uint16_t)(F_CPU / 1024 * 10e-3 + 0.5);					// preload for 10 ms
-	TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;									// Enable overflow interrupt
+	TCA0.SINGLE.PER = (uint16_t)(F_CPU / 1024 * 10e-3 + 0.5);															// preload for 10 ms
+	TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;																			// Enable overflow interrupt
 	
 	// Init PIT (Periodic interrupt timer, used for counting seconds)
 	RTC.CLKSEL = RTC_CLKSEL_INT1K_gc;						// Use internal 1.024 kHz clock
@@ -97,8 +99,8 @@ int main(void)
 	sei();
 	
 	currentState = STATE_SET;
-	setHours = eeprom_read_byte(&ee_defaultHours);	// read the default hours from the EEPROM
-	if(setHours < 1 || setHours > 9)				// read value is out of valid range
+	setHours = eeprom_read_byte(&ee_defaultHours);			// read the default hours from the EEPROM
+	if(setHours < 1 || setHours > 9)						// read value is out of valid range. Set it to some default value.
 	{
 		setHours = 3;
 	}
