@@ -26,7 +26,8 @@
 #define DOT_7SEG_OFF		PORTA_OUT &= ~(1<<PIN_BCD_7SEG_DOT);	/**< Switch the 7-segment dot off */
 #define DOT_7SEG_TOGGLE		PORTA_OUT ^= (1<<PIN_BCD_7SEG_DOT);		/**< Toggle the 7-segment dot */
 		
-#define SECONDS_FOR_7SEG_DIGIT	3600								/**< This number of seconds must elapse for the 7 segment digit to change */
+#define SECONDS_FOR_7SEG_DIGIT	(3600 * TIME_CALIBRATION_FACTOR)	/**< This number of seconds must elapse for the 7 segment digit to change */
+#define TIME_CALIBRATION_FACTOR	1.02		// 0.981				/**< Factor that can be used for calibration. 1 = No calib, >1 = countdown was running to fast (slow it down), <1 = countdown was running to slow (speed it up) */
 
 // ################################################################################
 
